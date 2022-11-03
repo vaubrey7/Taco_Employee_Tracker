@@ -1,0 +1,20 @@
+{
+    "name": "taco_employee-tracker",
+    "version": "1.0.0",
+    "description": "Taco Employee Tracker",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "Vaughn Aubrey",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "console.table": "^0.10.0",
+        "express": "^4.17.1",
+        "inquirer": "^8.2.4",
+        "mysql2": "^2.3.3"
+    }
+}
