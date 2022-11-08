@@ -20,8 +20,8 @@ CREATE TABLE employees (
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    taco_role_id INT,
-    FOREIGN KEY(taco_role_id) REFERENCES roles(id),
+    role_id INT,
+    FOREIGN KEY(role_id) REFERENCES roles(id),
     manager_id INT,
     FOREIGN KEY(manager_id) REFERENCES employees(id)
 );

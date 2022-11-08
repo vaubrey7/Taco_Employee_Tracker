@@ -31,4 +31,4 @@ VALUES
 ('Angela', 'Davis', 7, 7),
 ('Alair', 'Kowalis', 8, 4);
 -- makes it so any manager_id is set to the correct id 
-UPDATE `taco_employee_db`.`employees` SET `manager_id` = '1' WHERE (`id` > '1');
+UPDATE `employee_db`.`employees` SET `manager_id` = '1' WHERE (`id` > '1');
