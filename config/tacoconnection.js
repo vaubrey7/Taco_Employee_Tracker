@@ -1,5 +1,5 @@
 const mysql = require('mysql2');
-const taco = require('taco');
+const chalk = require('chalk');
 
 // connect to MySQL
 connection = mysql.createConnection({
@@ -13,11 +13,11 @@ connection = mysql.createConnection({
 
 connection.connect((err) => {
     if (err) {
-        console.log(taco.bold.white.bgRed(err));
+        console.log(chalk.bold.white.bgblack(err));
         return;
     }
 
-    console.log(taco.bold.greenBright(`Connected to db. ThreadID: ${connection.threadId}`));
+    console.log(chalk.bold.greenBright(`Connected to db. ThreadID: ${connection.threadId}`));
 })
 
 module.exports = connection;

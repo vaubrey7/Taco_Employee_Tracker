@@ -1,5 +1,5 @@
 {
-    "name": "taco_employee-tracker",
+    "name": "taco_employee_tracker",
     "version": "1.0.0",
     "description": "Taco Employee Tracker",
     "main": "server.js",

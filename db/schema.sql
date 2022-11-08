@@ -2,20 +2,20 @@
 DROP DATABASE IF EXISTS taco_employee_db;
 CREATE DATABASE taco_employee_db;
 USE taco_employee_db;
---creating the departments table
+-- creates the departments table
 CREATE TABLE departments (
     id INT PRIMARY KEY AUTO_INCREMENT,
     department_name VARCHAR(30) NOT NULL
 );
---creating the roles table
+-- creating roles table
 CREATE TABLE roles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
-    salary DECIMAL(7,3) NOT NULL,
+    salary DECIMAL(8,2) NOT NULL,
     department_id INT NOT NULL,
     FOREIGN KEY(department_id) REFERENCES departments(id)
 );
---creating the employees table
+-- creating employees table
 CREATE TABLE employees (
     id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(30) NOT NULL,

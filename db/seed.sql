@@ -15,8 +15,8 @@ VALUES
 ('Taco Counter', 60000, 2),
 ('Taco Sales Lead ', 70000, 3), 
 ('Taco Marketing Manager', 90000, 3),
-('Big Taco CFO', 1100000, 4),
-('Taco Supreme CEO', 5290000, 4);
+('Big Taco CFO', 910000, 4),
+('Taco Supreme CEO', 990000, 4);
 
 -- sets the values of employees by adding their first_name, Last_name, role_id and manager_id
 
@@ -26,9 +26,9 @@ VALUES
 ('Jason', 'Sin', 1, 1),
 ('Leo', 'Moreno', 4, null),
 ('Michael', 'Spencer', 3, 3),
-('Bat', 'Man', 6, null),
-('Adam', 'Savage', 5, 4),
-('Angela', 'Davis', 7, 7),
-('Alair', 'Kowalis', 8, 4);
+('Bat', 'Man', 2, null),
+('Adam', 'Savage', 2, 2),
+('Angela', 'Davis', 3, null),
+('Alair', 'Kowalis', 4, 4);
 -- makes it so any manager_id is set to the correct id 
-UPDATE `employee_db`.`employees` SET `manager_id` = '1' WHERE (`id` > '1');
+UPDATE `taco_employee_db`.`employees` SET `manager_id` = '1' WHERE (`id` > '1');
