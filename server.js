@@ -16,7 +16,7 @@ const startScreen = [
     'View all Departments',
     'Add Department',
     'Remove Department',
-    'Exit'
+    'Exit',
 ];
 
 // allows selecting of employee by "first name" instead of "first_name" or "Deparment" instead of "deparment_name" etc.
@@ -36,21 +36,20 @@ const addEmployeeQuestions = [
     'Who will be their manager?'
 ];
 // concatenating the names to make a full name and also adding their title and derartment-- also desplays manager when they are in fact a manager
-const roleQuery = 'SELECT * from roles; SELECT CONCAT (e.first_name," ",e.last_name) AS full_name FROM employees e'
+const roleQuery = 'SELECT * from roles; SELECT CONCAT (e.first_name," ",e.last_name) AS full_name FROM employees e';
 const mgrQuery = 'SELECT CONCAT (e.first_name," ",e.last_name) AS full_name, r.title, d.department_name FROM employees e INNER JOIN roles r ON r.id = e.role_id INNER JOIN departments d ON d.id = r.department_id WHERE department_name = "Management";';
 
 
 // runs the app, allows options for adding and removing employees, updating and removing roles, viewing by manager or department etc. 
-const startApp = () => {
-    inquirer.prompt([
+   inquirer.prompt([
         {
             name: 'menuChoice',
             type: 'list',
             message: 'Select an option',
             choices: startScreen,
-
-        },
-    ]).then((answer) => {
+         },
+        ])
+    .then((answer) => {
         switch (answer.menuChoice) {
             case 'View all Employees':
                 showAll();
@@ -91,18 +90,20 @@ const startApp = () => {
             case 'Exit':
                 connection.end();
                 break;
+            default:
+                connection.end()
         }
     })
-};
 
 
+startApp();
 // show all employees
 const showAll = () => {
     connection.query(allEmployeeQuery, (err, results) => {
         if (err) throw err;
         console.log(' ');
         console.table(chalk.bold.bgRed('All Employees'), results)
-        startApp();
+        // startApp();
     })
 };
 
@@ -133,7 +134,7 @@ const showByDept = () => {
                 if (err) throw err;
                 console.log(' ');
                 console.table(chalk.bold.bgRed(`All Employees by Department: ${chosenDept.department_name}`), res)
-                startApp();
+                // startApp();
             })
         })
     })
@@ -167,9 +168,10 @@ const showByManager = () => {
                 if (err) throw err;
                 console.log(' ');
                 console.table(chalk.bold.bgRed('Employees by Manager'), results);
-                startApp();
+                // startApp();
             })
         })
+        
     })
 };
 
@@ -214,7 +216,7 @@ const addEmployee = () => {
               (SELECT id FROM roles WHERE title = ? ), 
               (SELECT id FROM (SELECT id FROM employees WHERE CONCAT(first_name," ",last_name) = ? ) AS tmptable))`, [answer.fName, answer.lName, answer.role, answer.manager]
             )
-            startApp();
+            // startApp();
         })
     })
 };
@@ -233,7 +235,7 @@ const removeEmployee = () => {
             }
         ]).then((answer) => {
             connection.query(`DELETE FROM employees where ?`, { id: answer.IDtoRemove })
-            startApp();
+            // startApp();
         })
     })
 };
@@ -266,7 +268,7 @@ const updateRole = () => {
           SET role_id = (SELECT id FROM roles WHERE title = ? ) 
           WHERE id = (SELECT id FROM(SELECT id FROM employees WHERE CONCAT(first_name," ",last_name) = ?) AS tmptable)`, [answer.newRole, answer.empl], (err, results) => {
                 if (err) throw err;
-                startApp();
+                // startApp();
             })
         })
     })
@@ -280,7 +282,7 @@ const viewRoles = () => {
 
         console.log(' ');
         console.table(chalk.bold.bgRed('All Roles'), results);
-        startApp();
+        // startApp();
     })
 
 }
@@ -319,13 +321,13 @@ const addRole = () => {
               ("${answer.newTitle}", "${answer.newSalary}", 
               (SELECT id FROM departments WHERE department_name = "${answer.dept}"));`
             )
-            startApp();
+            // startApp();
         })
     })
 };
 
 // allows you to remove a role
-removeRole = () => {
+const removeRole = () => {
     query = `SELECT * FROM roles`;
     connection.query(query, (err, results) => {
         if (err) throw err;
@@ -341,7 +343,7 @@ removeRole = () => {
             }
         ]).then((answer) => {
             connection.query(`DELETE FROM roles WHERE ? `, { title: answer.removeRole });
-            startApp();
+            // startApp();
         })
     })
 };
@@ -353,7 +355,7 @@ const viewDept = () => {
         if (err) throw err;
         console.log('');
         console.table(chalk.bold.bgRed('All Departments'), results)
-        startApp();
+        // startApp();
     })
 };
 
@@ -372,7 +374,7 @@ const addDept = () => {
             }
         ]).then((answer) => {
             connection.query(`INSERT INTO departments(department_name) VALUES( ? )`, answer.newDept)
-            startApp();
+            // startApp();
         })
     })
 };
@@ -394,10 +396,9 @@ const removeDept = () => {
             }
         ]).then((answer) => {
             connection.query(`DELETE FROM departments WHERE ? `, { department_name: answer.dept });
-            startApp();
+            // startApp();
         })
     })
 };
 
-console.log("exit");
-startApp();
+
