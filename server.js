@@ -2,7 +2,6 @@ const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const cTable = require('console.table');
-const connection = require('./config/tacoconnection');
 const startScreen = [
     'View all Employees',
     'View all Emplyees by Department',
@@ -96,7 +95,7 @@ const mgrQuery = 'SELECT CONCAT (e.first_name," ",e.last_name) AS full_name, r.t
     })
 
 
-startApp();
+// startApp();
 // show all employees
 const showAll = () => {
     connection.query(allEmployeeQuery, (err, results) => {
