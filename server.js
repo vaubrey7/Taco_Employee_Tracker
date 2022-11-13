@@ -395,9 +395,9 @@ const removeDept = () => {
             }
         ]).then((answer) => {
             connection.query(`DELETE FROM departments WHERE ? `, { department_name: answer.dept });
-            // startApp();
         })
     })
+    startApp();
 };
 
 
