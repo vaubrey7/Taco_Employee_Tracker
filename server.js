@@ -1,6 +1,29 @@
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
 const inquirer = require('inquirer');
+// const chalk = require('chalk');
+const mysql = require('mysql2');
 const chalk = require('chalk');
+
+// connect to MySQL
+connection = mysql.createConnection({
+    host: 'localhost',
+    port: 3001,
+    user: 'root',
+    password: '1TglaFah1!',
+    database: 'taco_employee_db',
+    multipleStatements: true
+});
+
+connection.connect((err) => {
+    if (err) {
+        console.log(chalk.bold.white.bgblack(err));
+        return;
+    }
+
+    console.log(chalk.bold.greenBright(`Connected to db. ThreadID: ${connection.threadId}`));
+})
+
+// module.exports = connection;
 const cTable = require('console.table');
 const startScreen = [
     'View all Employees',
@@ -40,6 +63,7 @@ const mgrQuery = 'SELECT CONCAT (e.first_name," ",e.last_name) AS full_name, r.t
 
 
 // runs the app, allows options for adding and removing employees, updating and removing roles, viewing by manager or department etc. 
+  startApp() {
    inquirer.prompt([
         {
             name: 'menuChoice',
@@ -90,19 +114,18 @@ const mgrQuery = 'SELECT CONCAT (e.first_name," ",e.last_name) AS full_name, r.t
                 connection.end();
                 break;
             default:
-                connection.end()
-        }
+                connection.end();
+             }
     })
+}
 
-
-// startApp();
 // show all employees
 const showAll = () => {
     connection.query(allEmployeeQuery, (err, results) => {
         if (err) throw err;
-        console.log(' ');
-        console.table(chalk.bold.bgRed('All Employees'), results)
-        // startApp();
+        console.log(results);
+        // console.table(chalk.bold.bgRed('All Employees'), results)
+        startApp();
     })
 };
 
@@ -133,7 +156,7 @@ const showByDept = () => {
                 if (err) throw err;
                 console.log(' ');
                 console.table(chalk.bold.bgRed(`All Employees by Department: ${chosenDept.department_name}`), res)
-                // startApp();
+                startApp();
             })
         })
     })
@@ -167,7 +190,7 @@ const showByManager = () => {
                 if (err) throw err;
                 console.log(' ');
                 console.table(chalk.bold.bgRed('Employees by Manager'), results);
-                // startApp();
+                startApp();
             })
         })
         
@@ -215,7 +238,7 @@ const addEmployee = () => {
               (SELECT id FROM roles WHERE title = ? ), 
               (SELECT id FROM (SELECT id FROM employees WHERE CONCAT(first_name," ",last_name) = ? ) AS tmptable))`, [answer.fName, answer.lName, answer.role, answer.manager]
             )
-            // startApp();
+            startApp();
         })
     })
 };
@@ -234,7 +257,7 @@ const removeEmployee = () => {
             }
         ]).then((answer) => {
             connection.query(`DELETE FROM employees where ?`, { id: answer.IDtoRemove })
-            // startApp();
+            startApp();
         })
     })
 };
@@ -267,7 +290,7 @@ const updateRole = () => {
           SET role_id = (SELECT id FROM roles WHERE title = ? ) 
           WHERE id = (SELECT id FROM(SELECT id FROM employees WHERE CONCAT(first_name," ",last_name) = ?) AS tmptable)`, [answer.newRole, answer.empl], (err, results) => {
                 if (err) throw err;
-                // startApp();
+                startApp();
             })
         })
     })
@@ -281,7 +304,7 @@ const viewRoles = () => {
 
         console.log(' ');
         console.table(chalk.bold.bgRed('All Roles'), results);
-        // startApp();
+        startApp();
     })
 
 }
@@ -320,7 +343,7 @@ const addRole = () => {
               ("${answer.newTitle}", "${answer.newSalary}", 
               (SELECT id FROM departments WHERE department_name = "${answer.dept}"));`
             )
-            // startApp();
+            startApp();
         })
     })
 };
@@ -342,7 +365,7 @@ const removeRole = () => {
             }
         ]).then((answer) => {
             connection.query(`DELETE FROM roles WHERE ? `, { title: answer.removeRole });
-            // startApp();
+            startApp();
         })
     })
 };
@@ -354,7 +377,7 @@ const viewDept = () => {
         if (err) throw err;
         console.log('');
         console.table(chalk.bold.bgRed('All Departments'), results)
-        // startApp();
+        startApp();
     })
 };
 
@@ -373,7 +396,7 @@ const addDept = () => {
             }
         ]).then((answer) => {
             connection.query(`INSERT INTO departments(department_name) VALUES( ? )`, answer.newDept)
-            // startApp();
+            startApp();
         })
     })
 };
@@ -399,5 +422,4 @@ const removeDept = () => {
     })
     startApp();
 };
-
-
+startApp();
