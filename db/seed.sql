@@ -22,13 +22,13 @@ VALUES
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES 
-('Vaughn', 'Aubrey', 1, null),
+('Vaughn', 'Aubrey', 1, NULL),
 ('Jason', 'Sin', 1, 1),
-('Leo', 'Moreno', 4, null),
+('Leo', 'Moreno', 4, NULL),
 ('Michael', 'Spencer', 3, 3),
-('Bat', 'Man', 2, null),
+('Bat', 'Man', 2, NULL),
 ('Adam', 'Savage', 2, 2),
-('Angela', 'Davis', 3, null),
+('Angela', 'Davis', 3, NULL),
 ('Alair', 'Kowalis', 4, 4);
 -- makes it so any manager_id is set to the correct id 
 UPDATE `taco_employee_db`.`employees` SET `manager_id` = '1' WHERE (`id` > '1');

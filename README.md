@@ -2,6 +2,9 @@
 A businesses guide to tracking your employees 
 
 
+# Pictures
+![Resources] 
+
 ## Repository 
 
 [Vaughn Aubrey](https://github.com/vaubrey7/Taco_Employee_Tracker)
@@ -19,7 +22,7 @@ A businesses guide to tracking your employees
 - [Contribution](#Contribution-)
 - [Licensing](#Licensing-)
 - [Contact](#Contact-)
-
+- [Resources](#pictures-)
 ## Description 
 
         CMS - A command line application to interact with your employee database
