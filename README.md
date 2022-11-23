@@ -15,7 +15,7 @@ A businesses guide to tracking your employees
 
 ## Video Demo 
 
-[Vaughn Aubrey's YouTube]([https://www.youtube.com](https://youtu.be/6hZewaV-ql8))
+[Vaughn Aubrey's YouTube](https://www.youtube.com/watch?v=6hZewaV-ql8)
 
 ## Table of Contents ##
 
