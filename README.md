@@ -4,6 +4,9 @@ A businesses guide to tracking your employees
 
 # Pictures
 ![Resources] 
+![2022-11-20](https://user-images.githubusercontent.com/103152585/203450049-7279a006-f774-4326-ad9a-12a737484015.png)
+![2022-11-20 (2)](https://user-images.githubusercontent.com/103152585/203450084-4ef7a636-4ddc-4c15-89d8-713e398dedc9.png)
+![2022-11-20 (1)](https://user-images.githubusercontent.com/103152585/203450099-4fd19171-5384-4e23-96ef-174afc57d294.png)
 
 ## Repository 
 
