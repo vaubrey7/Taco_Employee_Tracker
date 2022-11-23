@@ -208,7 +208,8 @@ const addEmployee = () => {
               `INSERT INTO employees(first_name, last_name, role_id, manager_id) VALUES(?, ?, 
               (SELECT id FROM roles WHERE title = ? ), 
               (SELECT id FROM (SELECT id FROM employees WHERE CONCAT(first_name," ",last_name) = ? ) AS tmptable))`, [answer.fName, answer.lName, answer.role, answer.manager]
-          )
+         
+              )
           startApp();
       })
   })
